@@ -6,4 +6,5 @@
 
 因为当初是为了开发Android用的一个将Android与SQLServer桥接的WebService，所以名字什么的就不要在意啦～～
 
-声明：非原创开发，本人无任何C#基础————基本是复制，基本看懂。源地址：http://blog.csdn.net/zhyl8157121/article/details/8169172
+声明：非原创开发，本人无任何C#基础————基本是复制，基本看懂
+源地址：http://blog.csdn.net/zhyl8157121/article/details/8169172
