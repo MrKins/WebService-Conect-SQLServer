@@ -22,7 +22,7 @@ namespace Android_SQL_WebService
         public static SqlConnection sqlCon;  //用于连接数据库
 
         //将下面的引号之间的内容换成上面记录下的属性中的连接字符串
-        private String ConServerStr = @"Data Source=KINS;Initial Catalog=mms;Integrated Security=True";
+        private String ConServerStr = @"Data Source=用户名;Initial Catalog=数据库名;Integrated Security=True";
 
         //默认构造函数
         public DBOperation()
@@ -52,7 +52,7 @@ namespace Android_SQL_WebService
         {
             try
             {
-                string sql = "insert into mms.dbo.mkActDaily (fId_,fActType,fAddFlag,fInputTime,fWorkerCardNr,fMachineCardNr,fMSAutoNr_,fInputType)values(NEWID(),'" + fActType + "','" + fAddFlag + "',GETDATE(),'" + fWorkerCardNr + "','" + fMachineCardNr + "','" + fMSAutoNr_ + "','1')";
+                string sql = "SQL语句，项目是别人公司的私活，不方便透露别人数据库SQL语句";
                 SqlCommand cmd = new SqlCommand(sql, sqlCon);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -67,31 +67,6 @@ namespace Android_SQL_WebService
         }
 
         /// <summary>
-        /// 写入Post表，方便过账程序运行
-        /// </summary>
-        public bool insertPost(string fMSAutoNr_)
-        {
-            try
-            {
-                string sql = "Insert Into mkActPost (fId_,AddTime,fMSNr,fisPost) Select newID(),GETDATE(), y.fNr   ,0 From (Select top 1 x.fnr from (Select a.fNr from mkSchBase a Inner Join mkSchProduct b On a.fNr=b.fNr Where CONVERT(varchar(50),b.fAutoNr_) ='" + fMSAutoNr_ + "' Union All Select a.fNr from mkSchBase a Inner Join mkSchProduct b On a.fNr=b.fNr Inner Join mkSchDetail  c On b.fId_=c.fMSId_ Where c.fAutoNr_ ='" + fMSAutoNr_ + "') x) y";
-                SqlCommand cmd = new SqlCommand(sql, sqlCon);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-
-
-
-
-
-
-        /// <summary>
         /// 获取所有员工的信息
         /// </summary>
         /// <returns>所有员工的信息</returns>
@@ -101,7 +76,7 @@ namespace Android_SQL_WebService
 
             try
             {
-                string sql = "Select fWorkerNr 员工编号,fWorkerName 员工姓名 From dbo.bsCenterWorker";
+                string sql = "SQL语句，版权问题，不便公开";
                 SqlCommand cmd = new SqlCommand(sql, sqlCon);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -134,7 +109,7 @@ namespace Android_SQL_WebService
 
             try
             {
-                string sql = "Select x.fAutoNr_ 识别码, x.fMouldNr 模具编号, x.fProcName 工艺,x.fPieceName 工件,X.fWorkerNr 员工号, x.fWorkerName 员工,X.fMachineNr 机台号,x.fMachineName 机台, CONVERT(varchar(100), x.fSchBegDate, 23) 计划起工日期, CONVERT(varchar(100), x.fSchEndDate, 23) 计划完工日期 From ( Select b.fId_,CONVERT(Varchar(20),b.fAutoNr_) as fAutoNr_, b.fProcNr,b.fProcName,b.fPieceNr,b.fPieceName,b.fCenterNr,b.fCenterName, b.fSchBegDate,b.fSchEndDate,b.fSchHour, b.fWorkerNr,b.fWorkerName,b.fMachineNr,b.fMachineName, a.fNr,a.fMouldNr,a.fMouldName,b.fIsMachine From mkSchBase a Inner Join mkSchProduct b On a.fNr=b.fNr Where isNull(b.fisDetail,0)=0 And ISNULL(b.fIsEnd,0)=0  AND (b.fMachineNr Like 'L01') Union All Select c.fId_,c.fAutoNr_, c.fProcNr,c.fProcName,c.fPieceNr,c.fPieceName,b.fCenterNr,b.fCenterName, c.fSchBegDate,c.fSchEndDate,c.fSchHour, c.fWorkerNr,c.fWorkerName,c.fMachineNr,c.fMachineName, a.fNr,a.fMouldNr,a.fMouldName,b.fIsMachine From mkSchBase a Inner Join mkSchProduct b On a.fNr=b.fNr Inner Join mkSchDetail c On b.fId_ =c.fMSId_ Where isNull(b.fisDetail,0)=1 And ISNULL(c.fIsEnd,0)=0 AND (c.fMachineNr Like 'L01') ) X Order By x.fAutoNr_ ";
+                string sql = "SQL语句~~不便公开";
                 SqlCommand cmd = new SqlCommand(sql, sqlCon);
                 SqlDataReader reader = cmd.ExecuteReader();
 
